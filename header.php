@@ -15,7 +15,7 @@
 //    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 </script>
 <head>
-	<title>LMIT</title>
+	<title>WSOperator</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="./jquery/jquery.js"></script>
 	<script src="./jquery/edit_pop.js"></script>
