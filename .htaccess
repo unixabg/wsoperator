@@ -1,0 +1,15 @@
+AuthName "LMIT Authentication"
+
+AuthType Basic
+
+Options -Indexes
+
+<FilesMatch "admin*.php|new_script.php|edit_script.php">
+	AuthUserFile /var/www/firmware/.htpasswdadmin
+	require valid-user
+</FilesMatch>
+
+<FilesMatch "manage*.php|group*.php|edit.php|custom.php|save_changes.php">
+	AuthUserFile /var/www/firmware/.htpasswd
+	require valid-user
+</FilesMatch>
