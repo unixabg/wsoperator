@@ -13,7 +13,7 @@ Options -Indexes
 </FilesMatch>
 
 <FilesMatch "manage*.php|group*.php|edit.php|custom.php|save_changes.php">
-  AuthUserFile /var/www/html/wsoperator/.htpasswd
+  AuthUserFile /var/www/html/wsoperator/.htpasswdmanage
   require valid-user
   #Order deny,allow
   #Deny from all
