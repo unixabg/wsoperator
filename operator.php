@@ -1,6 +1,7 @@
 <?php
 if(!empty($_GET['mac'])) {
-	$mac = $_GET['mac'];
+	#Unify mac format to use : and not -
+	$mac = preg_replace('/-/',':',strtolower($_GET['mac']));
 	$groups = scandir("./machines/");
 	$count_groups = count($groups);
 	$machine_sentry = 1;
