@@ -3,6 +3,20 @@
 	setlocal
 	set wsoperatorurl=http://name-or-ipaddress/wsoperator
 
+:setuplock
+	if '%1' == '-lock' (
+		shift
+		echo.
+		echo Lock file phonehomelockfile.txt established
+		goto :phonehome
+	)
+	rem Make sure the target folder exists and if not create it
+	if not exist c:\srs\wsoperator md c:\srs\wsoperator
+	echo.
+	echo Attempting to create phonehomelockfile.txt
+	call %0 -lock > c:\srs\wsoperator\phonehomelockfile.txt
+	goto :goodend
+
 :phonehome
 	rem
 	rem Sample script to phone home to wsoperator for insturctions.
@@ -16,8 +30,6 @@
 	:stopnow
 
 	rem We now should have the mac address in the mymac variable and we can call the wsoperator
-	rem Make sure the target folder exists and if not create it
-	if not exist c:\srs\wsoperator md c:\srs\wsoperator
 	bitsadmin /transfer myjob /download /priority high %wsoperatorurl%/operator.php?mac=%mymac% c:\srs\wsoperator\scripts.txt
 
 	rem The below reads the line of instructions allowing the for loop to walk through list of commands
