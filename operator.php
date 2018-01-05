@@ -1,7 +1,12 @@
 <?php
 if(!empty($_GET['mac'])) {
+	#FIXME Sanitize
 	#Unify mac format to use : and not -
 	$mac = preg_replace('/-/',':',strtolower($_GET['mac']));
+	#other_info is utility token for log info
+	if (isset($_GET['other_info'])) {
+		$other_info = filter_var($_GET['other_info'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
+	}
 	$groups = scandir("./machines/");
 	$count_groups = count($groups);
 	$machine_sentry = 1;
@@ -31,6 +36,9 @@ if(!empty($_GET['mac'])) {
 					touch($log);
 				}
 				file_put_contents($log, "[".date("Y-m-d H:i:s")."]\tscripts: $scripts\n", FILE_APPEND);
+				if (isset($other_info)) {
+					file_put_contents($log, "[".date("Y-m-d H:i:s")."]\tscripts: $other_info\n", FILE_APPEND);
+				}
 				$linecount = count(file($log));
 				if ($linecount > 250) {
 					$file = file($log);
