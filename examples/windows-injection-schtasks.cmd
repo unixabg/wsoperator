@@ -15,7 +15,7 @@
 	if not exist c:\srs\wsoperator\windows-injection.cmd goto :badend
 
 	rem All seem well so schedule the task for windows-injection.cmd
-	schtasks /Create /RU "NT AUTHORITY\SYSTEM" /SC ONSTART /TN windows-injection /TR c\srs\wsoperator\windows-injection.cmd /F
+	schtasks /Create /RU "NT AUTHORITY\SYSTEM" /SC ONSTART /TN windows-injection /TR c:\srs\wsoperator\windows-injection.cmd /F
 
 :goodend
 	rem
